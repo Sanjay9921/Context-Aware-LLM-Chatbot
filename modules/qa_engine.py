@@ -36,22 +36,18 @@ def generate_answer(context, question):
         json=payload
     )
 
-    print("Status:", response.status_code)
+    # print("Status:", response.status_code)
 
     # Log the response text to understand its structure
-    print("Response Text:", response.text)
-
-    # Log the response text to understand its structure
-    print("Response Text:", response.status_code)
+    # print("Response Text:", response.text)
 
     if response.status_code != 200:
         if response.status_code == 401:
-            print("Unauthorized: Check your API Key")
+            return "Unauthorized: Check your API Key"
         elif response.status_code == 403:
-            print("Forbidden: The API Key may not have sufficient permissions.")
+            return "Forbidden: The API Key may not have sufficient permissions."
         else:
-            print("Response failed. Details:", response.text)
-        return "Request failed."
+            return "Response failed. Details:", response.text
     
     try:
         result = response.json()
