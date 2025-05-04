@@ -1,4 +1,4 @@
-# modules/text_processor.py
+# modules/text_preprocessor.py
 
 import spacy
 

@@ -3,3 +3,4 @@ PyMuPDF
 spacy
 requests
 networkx
+en-core-web-sm
