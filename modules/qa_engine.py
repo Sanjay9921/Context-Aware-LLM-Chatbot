@@ -51,7 +51,7 @@ def generate_answer(context, question):
     
     try:
         result = response.json()
-        return "Full API Response: " + result # test
+        return f"Full API Response: {result}" # test
     
         print("Result:", result)  # Log the result to see the structure
         if "choices" in result:
