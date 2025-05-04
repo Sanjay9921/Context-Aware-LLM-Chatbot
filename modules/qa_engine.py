@@ -52,9 +52,6 @@ def generate_answer(context, question):
     try:
         result = response.json()
         # return f"Full API Response: {result}" # to debug the json output
-        if "output" in result:
-            return result["output"]['choices'][0]['message']['content'].strip()
-        else:
-            return "No answer found in response."
+        return result["output"]['choices'][0]['text'].strip()
     except Exception as e:
         return f"Request failed: {str(e)}"
