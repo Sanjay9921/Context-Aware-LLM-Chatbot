@@ -19,8 +19,16 @@ Answer:"""
             "model": MODEL_NAME,
             "messages": [{"role": "user", "content": prompt}],
             "temperature": 0.7,
+            "max_tokens": 300,
+            "top_p": 0.9
         },
     )
+
+    print(" Status:", response.status_code)
+
+    if response.status_code != 200:
+        print(" Response Text:", response.text)
+        return " Request failed."
 
     result = response.json()
     return result['choices'][0]['message']['content'].strip()
