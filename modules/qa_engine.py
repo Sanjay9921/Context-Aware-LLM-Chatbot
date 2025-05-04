@@ -41,6 +41,9 @@ def generate_answer(context, question):
     # Log the response text to understand its structure
     print("Response Text:", response.text)
 
+    # Log the response text to understand its structure
+    print("Response Text:", response.status_code)
+
     if response.status_code != 200:
         if response.status_code == 401:
             print("Unauthorized: Check your API Key")
