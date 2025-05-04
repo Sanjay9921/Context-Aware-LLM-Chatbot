@@ -51,11 +51,9 @@ def generate_answer(context, question):
     
     try:
         result = response.json()
-        return f"Full API Response: {result}" # test
-    
-        print("Result:", result)  # Log the result to see the structure
-        if "choices" in result:
-            return result['choices'][0]['message']['content'].strip()
+        # return f"Full API Response: {result}" # to debug the json output
+        if "output" in result:
+            return result["output"]['choices'][0]['message']['content'].strip()
         else:
             return "No answer found in response."
     except Exception as e:
