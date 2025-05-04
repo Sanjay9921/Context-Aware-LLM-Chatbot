@@ -1,7 +1,12 @@
 # modules/text_preprocessor.py
 
 import spacy
-nlp = spacy.load("en_core_web_sm")
+try:
+    nlp = spacy.load("en_core_web_sm")
+except OSError:
+    import subprocess
+    subprocess.run(["python", "-m", "spacy", "download", "en_core_web_sm"])
+    nlp = spacy.load("en_core_web_sm")
     
 def preprocess_text(text):
     doc = nlp(text)
