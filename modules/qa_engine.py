@@ -42,9 +42,14 @@ def generate_answer(context, question):
     print("Response Text:", response.text)
 
     if response.status_code != 200:
-        print(" Response Text:", response.text)
-        return " Request failed."
-
+        if response.status_code == 401:
+            print("Unauthorized: Check your API Key")
+        elif response.status_code == 403:
+            print("Forbidden: The API Key may not have sufficient permissions.")
+        else:
+            print("Response failed. Details:", response.text)
+        return "Request failed."
+    
     try:
         result = response.json()
         print("Result:", result)  # Log the result to see the structure
