@@ -5,7 +5,8 @@ try:
     nlp = spacy.load("en_core_web_sm")
 except OSError:
     import subprocess
-    subprocess.run(["python", "-m", "spacy", "download", "en_core_web_sm"])
+    import sys
+    subprocess.run([sys.executable, "-m", "spacy", "download", "en_core_web_sm"], check=True)
     nlp = spacy.load("en_core_web_sm")
     
 def preprocess_text(text):
