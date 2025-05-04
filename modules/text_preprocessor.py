@@ -1,16 +1,19 @@
 # modules/text_preprocessor.py
-
-import spacy
-import subprocess
-import sys
-
-try:
-    nlp = spacy.load("en_core_web_sm")
-except OSError:
-    subprocess.run([sys.executable, "-m", "spacy", "download", "en_core_web_sm"])
-    nlp = spacy.load("en_core_web_sm")
     
-def preprocess_text(text):
-    doc = nlp(text)
-    chunks = [(ent.text, ent.label_) for ent in doc.ents]
+from langchain.text_splitter import CharacterTextSplitter
+
+def preprocess_text(text, chunk_size=1000, chunk_overlap=100):
+    """
+    Splits raw text into chunks using Langchain's CharacterTextSplitter.
+    
+    Args:
+        text (str): The full text to be split.
+        chunk_size (int): The maximum size of each chunk.
+        chunk_overlap (int): The number of overlapping characters between chunks.
+
+    Returns:
+        List[str]: A list of text chunks.
+    """
+    splitter = CharacterTextSplitter(chunk_size=chunk_size, chunk_overlap=chunk_overlap)
+    chunks = splitter.split_text(text)
     return chunks
