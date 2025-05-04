@@ -29,6 +29,7 @@ def generate_answer(context, question):
         "top_p": 0.9,
     }
 
+    # Sending the POST request to the API
     response = requests.post(
         _url,
         headers=_headers,
@@ -37,9 +38,15 @@ def generate_answer(context, question):
 
     print(" Status:", response.status_code)
 
+    # Log the response text to understand its structure
+    print("Response Text:", response.text)
+
     if response.status_code != 200:
         print(" Response Text:", response.text)
         return " Request failed."
 
-    result = response.json()
-    return result['choices'][0]['message']['content'].strip()
+    try:
+        result = response.json()
+        return result['choices'][0]['message']['content'].strip()
+    except Exception as e:
+        return f"Request failed: {str(e)}"
