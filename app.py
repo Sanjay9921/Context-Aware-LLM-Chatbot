@@ -1,4 +1,5 @@
 import streamlit as st
+import fitz
 from modules.pdf_parser import extract_text_from_pdf
 from modules.text_preprocessor import preprocess_text
 from modules.qa_engine import generate_answer
