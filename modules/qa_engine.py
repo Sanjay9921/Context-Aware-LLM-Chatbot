@@ -36,7 +36,7 @@ def generate_answer(context, question):
         json=payload
     )
 
-    print(" Status:", response.status_code)
+    print("Status:", response.status_code)
 
     # Log the response text to understand its structure
     print("Response Text:", response.text)
@@ -47,6 +47,10 @@ def generate_answer(context, question):
 
     try:
         result = response.json()
-        return result['choices'][0]['message']['content'].strip()
+        print("Result:", result)  # Log the result to see the structure
+        if "choices" in result:
+            return result['choices'][0]['message']['content'].strip()
+        else:
+            return "No answer found in response."
     except Exception as e:
         return f"Request failed: {str(e)}"
