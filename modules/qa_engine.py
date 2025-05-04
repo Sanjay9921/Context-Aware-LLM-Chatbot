@@ -1,7 +1,7 @@
 import requests
 from config.settings import TOGETHER_API_KEY, MODEL_NAME
 
-def generate_answer(context, question):
+def get_prompt(context, question):
     prompt = f"""You are an assistant. Use the context below to answer the question:
 
 Context:
@@ -11,17 +11,28 @@ Question:
 {question}
 
 Answer:"""
+    return prompt
+
+def generate_answer(context, question):
+    
+    _url = "https://api.together.xyz/inference"
+    _headers = {
+        "Authorization": f"Bearer {TOGETHER_API_KEY}",
+        "Content-Type":"application/json"
+    }
+    prompt = get_prompt(context, question)
+    payload = {
+        "model": MODEL_NAME,
+        "prompt": prompt,
+        "max_tokens": 300,
+        "temperature": 0.5,
+        "top_p": 0.9,
+    }
 
     response = requests.post(
-        "https://api.together.xyz/v1/chat/completions",
-        headers={"Authorization": f"Bearer {TOGETHER_API_KEY}"},
-        json={
-            "model": MODEL_NAME,
-            "messages": [{"role": "user", "content": prompt}],
-            "temperature": 0.7,
-            "max_tokens": 300,
-            "top_p": 0.9
-        },
+        _url,
+        headers=_headers,
+        json=payload
     )
 
     print(" Status:", response.status_code)
