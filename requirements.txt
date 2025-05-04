@@ -1,5 +1,5 @@
 streamlit
 PyMuPDF
-spacy
 requests
 python-dotenv
+langchain==0.1.14
