@@ -3,5 +3,10 @@ from dotenv import load_dotenv # environment variables
 
 load_dotenv()
 
+TOGETHER_API_URL = os.getenv("TOGETHER_API_URL")
 TOGETHER_API_KEY = os.getenv("TOGETHER_API_KEY")
-MODEL_NAME = "meta-llama/Llama-3.3-70B-Instruct-Turbo-Free"
+
+MODEL_NAME_1 = "meta-llama/Llama-3.3-70B-Instruct-Turbo-Free"
+MODEL_NAME_2 = "deepseek-ai/DeepSeek-R1-Distill-Llama-70B-free"
+
+HUGGING_FACE_API_KEY = os.getenv("HUGGING_FACE_API_KEY")

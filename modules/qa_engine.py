@@ -1,5 +1,5 @@
 import requests
-from config.settings import TOGETHER_API_KEY, MODEL_NAME
+from config.settings import TOGETHER_API_URL, TOGETHER_API_KEY
 
 def get_prompt(context, question):
     prompt = f"""You are an assistant. Use the context below to answer the question:
@@ -13,16 +13,18 @@ Question:
 Answer:"""
     return prompt
 
-def generate_answer(context, question):
+def generate_answer(context, question, model):
     
-    _url = "https://api.together.xyz/inference"
+    _url = TOGETHER_API_URL
     _headers = {
         "Authorization": f"Bearer {TOGETHER_API_KEY}",
         "Content-Type":"application/json"
     }
+
     prompt = get_prompt(context, question)
+
     payload = {
-        "model": MODEL_NAME,
+        "model": model,
         "prompt": prompt,
         "max_tokens": 300,
         "temperature": 0.5,
@@ -53,5 +55,6 @@ def generate_answer(context, question):
         result = response.json()
         # return f"Full API Response: {result}" # to debug the json output
         return result["output"]['choices'][0]['text'].strip()
+        # return result[0]["answer"]
     except Exception as e:
         return f"Request failed: {str(e)}"
