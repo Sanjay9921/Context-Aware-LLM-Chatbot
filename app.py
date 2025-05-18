@@ -3,6 +3,7 @@ import fitz
 from modules.pdf_parser import extract_text_from_pdf
 from modules.text_preprocessor import preprocess_text
 from modules.qa_engine import generate_answer
+from config.settings import  MODEL_NAME_1, MODEL_NAME_2
 
 # Streamlit page setup
 st.set_page_config(page_title="Context-Aware PDF Chatbot", layout="wide")
@@ -26,6 +27,8 @@ if uploaded_file:
 
     if user_question:
         with st.spinner("Generating answer..."):
-            answer = generate_answer(full_context, user_question)
+            _model = MODEL_NAME_1
+            print(_model)
+            answer = generate_answer(full_context, user_question, model=_model)
         st.markdown("** Answer:**")
         st.write(answer)
