@@ -7,7 +7,7 @@ from config.settings import  MODEL_NAME_1, MODEL_NAME_2
 
 # Streamlit page setup
 st.set_page_config(page_title="Context-Aware PDF Chatbot", layout="wide")
-st.title("📄 Chat with your PDF")
+st.title("Chat with your PDF")
 
 # Upload a PDF
 uploaded_file = st.file_uploader("Upload a PDF", type=["pdf"])
