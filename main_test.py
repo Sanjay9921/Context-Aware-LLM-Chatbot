@@ -223,16 +223,5 @@ df_results1 = run_and_save_test_suite(
     delay=10
 )
 
-
-## 4.2 Test 2 - RAG PDF
-df_results2 = run_and_save_test_suite(
-    df_test_suite=df_test_suite_2,
-    models=models,
-    file_path=file_path_2,
-    output_csv_path="./tests/results/test2.csv",
-    iterations=3,
-    delay=10
-)
-
 # FINAL RESULT
 print("Successful!")
